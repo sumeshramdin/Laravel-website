@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Demo\DemoContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(DemoContoller::class)->group(function () {
-    Route::get('/about', 'index');
-    Route::get('/contact', 'contactMethod');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
